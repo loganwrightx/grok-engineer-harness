@@ -23,9 +23,8 @@ This repository is meant to use the Grok API to bring Grok into as many engineer
 
 For maximal reusability, all harnesses must inherit from the parent class, `GrokHarness`. `GrokHarness` will provide a few member methods that must be supported by each child class:
 
-1. `harness_description() -> str`: Returns the description of the harness including what it does and how it's intended to be used; describes the scope of the harness and limitations.
-2. `harness_help() -> str`: Returns a detailed description of how to use the specified harness. This function will be the only thing that can tell the agent(s) how to use the respective toolset. This must be maintained to give the agent(s) all necessary context to effectively use the provided toolset. All usage of these harnesses will depend on defining a specific action (i.e. GET, POST, DELETE, etc.) as well as a body to perform the action with; this is extremely similar to a REST API.
-3. `execute(command: str, *args, **kwargs) -> Any`: Single calling point for the agent(s) to execute their desired actions. Again, similar to a REST API, the command option specifies what to do with the args/kwargs.
+1. `help() -> str`: Returns a detailed description of what the harness _does_ and how to use it. This function will be the only thing that can tell the agent(s) how to use the respective toolset. This must be maintained to give the agent(s) all necessary context to effectively use the provided toolset. All usage of these harnesses will depend on defining a specific action (i.e. GET, POST, DELETE, etc.) as well as a body to perform the action with; this is extremely similar to a REST API.
+2. `execute(command: str, *args, **kwargs) -> Any`: Single calling point for the agent(s) to execute their desired actions. Again, similar to a REST API, the command option specifies what to do with the args/kwargs.
 
 Additional functions created in these child classes must be utilized within the above 3 functions – the main event loop will _not_ make calls to any other special functions.
 
